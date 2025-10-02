@@ -1,0 +1,38 @@
+{
+  "name": "nginx-proxy-manager-cli",
+  "version": "1.0.0",
+  "description": "Command Line Interface for Nginx Proxy Manager",
+  "main": "index.js",
+  "bin": {
+    "npm-cli": "./bin/npm-cli.js"
+  },
+  "scripts": {
+    "start": "node bin/npm-cli.js",
+    "test": "node test-cli.js"
+  },
+  "keywords": [
+    "nginx",
+    "proxy",
+    "manager",
+    "cli",
+    "reverse-proxy",
+    "ssl",
+    "certificates"
+  ],
+  "author": "Nginx Proxy Manager CLI",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^9.4.1",
+    "axios": "^1.6.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.5",
+    "fs-extra": "^11.1.1",
+    "js-yaml": "^4.1.0",
+    "table": "^6.8.1",
+    "ora": "^5.4.1",
+    "boxen": "^5.1.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
