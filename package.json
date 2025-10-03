@@ -1,6 +1,6 @@
 {
   "name": "nginx-proxy-manager-cli",
-  "version": "0.1.0-beta",
+  "version": "0.2.0",
   "description": "Command Line Interface for Nginx Proxy Manager",
   "main": "index.js",
   "bin": {
