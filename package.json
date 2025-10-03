@@ -1,6 +1,6 @@
 {
   "name": "nginx-proxy-manager-cli",
-  "version": "1.0.0",
+  "version": "0.1.0-beta",
   "description": "Command Line Interface for Nginx Proxy Manager",
   "main": "index.js",
   "bin": {
@@ -20,7 +20,7 @@
     "certificates"
   ],
   "author": "Nginx Proxy Manager CLI",
-  "license": "MIT",
+  "license": "NUL",
   "dependencies": {
     "commander": "^9.4.1",
     "axios": "^1.6.0",
