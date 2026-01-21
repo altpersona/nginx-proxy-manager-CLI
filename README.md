@@ -2,6 +2,17 @@
 
 A comprehensive command-line interface for managing Nginx Proxy Manager instances. This CLI tool provides full access to all Nginx Proxy Manager features including proxy hosts, SSL certificates, access lists, streams, redirections, and system settings.
 
+## 🎉 Version 0.2.1 Released!
+
+**✅ Critical bug fixes for SSL flag handling and disable/enable commands!**
+
+### 🔧 Fixed in 0.2.1:
+- **SSL Boolean Flags** - `--ssl-forced false` and `--no-ssl-forced` now work correctly
+- **Disable/Enable Commands** - No more "additional properties" errors
+- **Boolean Logic** - Consistent handling across all command types
+
+[📖 View Release Notes](RELEASE_NOTES.md)
+
 ## Features
 
 - 🔐 **Authentication Management** - Login, logout, and token management
@@ -488,6 +499,27 @@ npm-cli streams create -i 0.0.0.0 -p 3306 -h 192.168.1.50 -f 3306 --tcp
 ```bash
 npm-cli redirection create -d old.example.com --destination https://new.example.com --type permanent
 ```
+
+## Gitea Fix Commands
+
+Having issues with Gitea showing 500 errors? Use these quick fix commands:
+
+```bash
+# Fix Gitea proxy host (Host ID 2)
+npm-cli hosts update 2 \
+  --forward-scheme http \
+  --forward-host localhost \
+  --forward-port 3000 \
+  --ssl-forced false \
+  --advanced "proxy_set_header Host \$host; proxy_set_header X-Real-IP \$remote_addr; proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto \$scheme;"
+```
+
+Then restart:
+```bash
+npm-cli hosts disable 2 && npm-cli hosts enable 2
+```
+
+The SSL forcing flag issue has been fixed in version 0.2.1, so these commands should work properly now!
 
 ## Error Handling
 

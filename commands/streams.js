@@ -346,8 +346,14 @@ function streamsCommands(program) {
         const currentStream = await api.getStream(id);
         
         const updateData = {
-          ...currentStream,
-          enabled: true
+          incoming_address: currentStream.incoming_address,
+          incoming_port: currentStream.incoming_port,
+          forwarding_host: currentStream.forwarding_host,
+          forwarding_port: currentStream.forwarding_port,
+          tcp_forwarding: currentStream.tcp_forwarding,
+          udp_forwarding: currentStream.udp_forwarding,
+          enabled: true,
+          advanced_config: currentStream.advanced_config
         };
 
         const result = await api.updateStream(id, updateData);
@@ -378,8 +384,14 @@ function streamsCommands(program) {
         const currentStream = await api.getStream(id);
         
         const updateData = {
-          ...currentStream,
-          enabled: false
+          incoming_address: currentStream.incoming_address,
+          incoming_port: currentStream.incoming_port,
+          forwarding_host: currentStream.forwarding_host,
+          forwarding_port: currentStream.forwarding_port,
+          tcp_forwarding: currentStream.tcp_forwarding,
+          udp_forwarding: currentStream.udp_forwarding,
+          enabled: false,
+          advanced_config: currentStream.advanced_config
         };
 
         const result = await api.updateStream(id, updateData);

@@ -245,10 +245,10 @@ function hostsCommands(program) {
           forward_host: options.forwardHost || currentHost.forward_host,
           forward_port: options.forwardPort ? parseInt(options.forwardPort) : currentHost.forward_port,
           forward_scheme: options.forwardScheme || currentHost.forward_scheme,
-          enabled: options.disabled ? false : (options.enabled !== undefined ? options.enabled : currentHost.enabled),
+          enabled: options.disabled !== undefined ? false : (options.enabled !== undefined ? options.enabled : currentHost.enabled),
           certificate_id: options.certificateId !== undefined ? parseInt(options.certificateId) : currentHost.certificate_id,
-          ssl_forced: options.sslForced !== undefined ? options.sslForced : currentHost.ssl_forced,
-          http2_support: options.http2 !== undefined ? options.http2 : currentHost.http2_support,
+          ssl_forced: options.sslForced !== undefined ? options.sslForced : (options.noSslForced !== undefined ? false : currentHost.ssl_forced),
+          http2_support: options.http2 !== undefined ? options.http2 : (options.noHttp2 !== undefined ? false : currentHost.http2_support),
           advanced_config: options.advanced !== undefined ? options.advanced : currentHost.advanced_config,
           access_list_id: options.accessListId !== undefined ? parseInt(options.accessListId) : currentHost.access_list_id,
           locations: currentHost.locations,
@@ -330,8 +330,18 @@ function hostsCommands(program) {
         const currentHost = await api.getProxyHost(id);
         
         const updateData = {
-          ...currentHost,
-          enabled: true
+          domain_names: currentHost.domain_names,
+          forward_host: currentHost.forward_host,
+          forward_port: currentHost.forward_port,
+          forward_scheme: currentHost.forward_scheme,
+          enabled: true,
+          certificate_id: currentHost.certificate_id,
+          ssl_forced: currentHost.ssl_forced,
+          http2_support: currentHost.http2_support,
+          advanced_config: currentHost.advanced_config,
+          access_list_id: currentHost.access_list_id,
+          locations: currentHost.locations,
+          meta: currentHost.meta
         };
 
         const result = await api.updateProxyHost(id, updateData);
@@ -362,8 +372,18 @@ function hostsCommands(program) {
         const currentHost = await api.getProxyHost(id);
         
         const updateData = {
-          ...currentHost,
-          enabled: false
+          domain_names: currentHost.domain_names,
+          forward_host: currentHost.forward_host,
+          forward_port: currentHost.forward_port,
+          forward_scheme: currentHost.forward_scheme,
+          enabled: false,
+          certificate_id: currentHost.certificate_id,
+          ssl_forced: currentHost.ssl_forced,
+          http2_support: currentHost.http2_support,
+          advanced_config: currentHost.advanced_config,
+          access_list_id: currentHost.access_list_id,
+          locations: currentHost.locations,
+          meta: currentHost.meta
         };
 
         const result = await api.updateProxyHost(id, updateData);

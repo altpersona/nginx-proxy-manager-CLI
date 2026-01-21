@@ -343,8 +343,13 @@ function redirectionCommands(program) {
         const currentRedirection = await api.getRedirectionHost(id);
         
         const updateData = {
-          ...currentRedirection,
-          enabled: true
+          domain_names: currentRedirection.domain_names,
+          forward_scheme: currentRedirection.forward_scheme,
+          forward_domain_name: currentRedirection.forward_domain_name,
+          type: currentRedirection.type,
+          http_redirect_code: currentRedirection.http_redirect_code,
+          enabled: true,
+          advanced_config: currentRedirection.advanced_config
         };
 
         const result = await api.updateRedirectionHost(id, updateData);
@@ -375,8 +380,13 @@ function redirectionCommands(program) {
         const currentRedirection = await api.getRedirectionHost(id);
         
         const updateData = {
-          ...currentRedirection,
-          enabled: false
+          domain_names: currentRedirection.domain_names,
+          forward_scheme: currentRedirection.forward_scheme,
+          forward_domain_name: currentRedirection.forward_domain_name,
+          type: currentRedirection.type,
+          http_redirect_code: currentRedirection.http_redirect_code,
+          enabled: false,
+          advanced_config: currentRedirection.advanced_config
         };
 
         const result = await api.updateRedirectionHost(id, updateData);
