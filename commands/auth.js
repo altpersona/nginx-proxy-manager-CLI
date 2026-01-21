@@ -121,6 +121,7 @@ function authCommands(program) {
     .description('Check authentication status')
     .option('--json', 'Output in JSON format')
     .action(async (options) => {
+      let spinner;
       try {
         const config = getConfig();
         
@@ -132,7 +133,7 @@ function authCommands(program) {
           return;
         }
 
-        const spinner = createSpinner('Verifying token...');
+        spinner = createSpinner('Verifying token...');
         spinner.start();
 
         const api = new NginxProxyManagerAPI();
@@ -156,6 +157,9 @@ function authCommands(program) {
           }));
         }
       } catch (error) {
+        if (spinner) {
+          spinner.stop();
+        }
         warning('Token is invalid or expired');
         if (options.json) {
           console.log(formatOutput({ authenticated: false, error: error.message }, 'json'));
